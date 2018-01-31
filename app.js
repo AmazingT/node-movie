@@ -10,10 +10,17 @@ const logger = require('morgan') // 日志处理
 const multipart = require('connect-multiparty')
 
 // 命令行中可设置端口(PORT=8080 node app.js)
-const PORT = process.env.PORT || 3000 //默认3000 也可从命令行中设置端口启动
+const PORT = process.env.PORT || 3001 //默认3000 也可从命令行中设置端口启动
 var app = express()
 
-const dburl = 'mongodb://127.0.0.1:27017/imooc'
+var env = process.env.NODE_ENV || 'development'
+// 默认连接服务器MongoDB数据
+var dburl = 'mongodb://imooc_user:zb@127.0.0.1:19999/imooc'
+
+// 开发环境下连接本地数据库
+if (env === 'development') {
+	dburl = 'mongodb://127.0.0.1:27017/imooc'
+}
 const db = mongoose.connection
 
 // MongoDB数据库连接
@@ -67,7 +74,6 @@ app.listen(PORT, () => {
     console.log(`imooc started on port ${PORT}`)
 })
 
-var env = process.env.NODE_ENV || 'development'
 // 开发环境配置
 if ('development' === env) {
 	// 开发环境下

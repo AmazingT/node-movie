@@ -1,7 +1,7 @@
 {
     "apps": [
     {
-        "name": "Website",
+        "name": "Movie",
         "script": "app.js",
         "env":
         {
@@ -21,8 +21,9 @@
             "port": "3999",
             "ref": "origin/master",
             "repo": "git@github.com:AmazingT/node-movie.git",
-            "path": "/www/website/production",
+            "path": "/www/movie/production",
             "ssh_options": "StrictHostKeyChecking=no",
+            "post-deploy": "cnpm install && gulp build && pm2 startOrRestart ecosystem.json --env production",
             "env":
             {
                 "NODE_ENV": "production"
