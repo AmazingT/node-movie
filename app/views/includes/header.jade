@@ -1,0 +1,26 @@
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      a.navbar-brand(href="/") 电影世界
+    ul.nav.navbar-nav.navbar-right
+      li
+        form.navbar-form(method="GET", action="/search/results" ,role="search")
+          .form-group
+            input.form-control(type="text", name="key", placeholder="Search Movie")
+          button.btn.btn-default(type="submit") 提交
+      if !!user
+        li
+          a(href="javascript:void(0)") 欢迎您,#{user.name}
+        li
+          a.navbar-link(href="/logout") 注销
+      else
+        li
+          a.navbar-link(href="/signup") 注册
+        li
+          a.navbar-link(href="/signin") 登录
+.container(style="margin-top: 50px;")
+  .row
+    .page-header
+      .page-text
+        h1= title
+        small 重度影迷

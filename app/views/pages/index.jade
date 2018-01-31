@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      each cat in categories
+        .panel.panel-default
+          .panel-heading.clearfix
+            h3.pull-left #{cat.name}
+            a.pull-right(style="font-size:18px;line-height: 56px;",href='/category/results?cat=#{cat._id}&page=1') 更多影片
+          .panel-body
+            if cat.movies && cat.movies.length > 0
+              each item in cat.movies
+               .col-md-2.col-sm-6
+                 .thumbnail
+                   a(href="/movie/#{item._id}")
+                    if item.poster.indexOf('http') > -1
+                      img(src="#{item.poster}", alt="#{item.title}")
+                    else
+                      img(src="/upload/#{item.poster}", alt="#{item.title}")
+                   .caption.text-center
+                     h3 #{item.title}
+                     p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 立即观看
