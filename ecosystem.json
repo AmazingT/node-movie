@@ -1,0 +1,28 @@
+{
+	"apps:": [
+		{
+			"name": "Website",
+			"script": "app.js",
+			"env": {
+				"COMMON_VARIABLE": "true"
+			},
+			"env_production": {
+				"NODE_ENV": "production"
+			}
+ 		}
+	],
+	"deploy": {
+		"production": {
+			"user": "zb",
+			"host": ["182.61.27.10"],
+			"port": "3999",
+			"ref": "origin/master",
+			"repo": "git@github.com:AmazingT/node-movie.git",
+			"path": "/www/website/production",
+			"ssh_options": "StrictHostKeyChecking=no",
+			"env": {
+				"NODE_ENV": "production"
+			}
+		}
+	}
+}
